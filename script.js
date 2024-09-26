@@ -23,12 +23,20 @@ function operator (op, var1, var2) {
     } else if (op === '*') {
         return calcMult(var1, var2);
     } else if (op === '/') {
-        return calcDiv(var1, var2);
+        if (var2 === 0) {
+            alert("Dividing by zero is rather naughty now isn't it? You naught naughty!")
+        } else {
+            return calcDiv(var1, var2);
+        }
     }
 }
 
 function addToDisplay(value) {
     displayVar.innerHTML = displayVar.innerHTML + value;
+}
+
+function clearDisplay() {
+    displayVar.innerHTML = ''
 }
 
 function evalDisplay(toEval) {
@@ -67,9 +75,10 @@ numpadButtonsAll = document.querySelectorAll("button")
 for (const val of numpadButtonsAll) {
     if (val.innerHTML === '=') {
         val.addEventListener("click", () => {
-            console.log(displayVar.innerHTML)
             evalDisplay(displayVar.innerHTML)
         })
+    } else if (val.innerHTML === 'C') {
+        val.addEventListener("click", () => clearDisplay())
     } else {
     val.addEventListener("click", () => {
         addToDisplay(val.innerHTML)
