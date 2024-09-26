@@ -25,6 +25,8 @@ function operator (op, var1, var2) {
     } else if (op === '/') {
         if (var2 === 0) {
             alert("Dividing by zero is rather naughty now isn't it? You naught naughty!")
+            clearDisplay()
+            return ''
         } else {
             return calcDiv(var1, var2);
         }
