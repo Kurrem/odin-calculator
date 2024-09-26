@@ -1,4 +1,5 @@
 function calcAdd (a, b) {
+
     return a + b;
 }
 
@@ -15,7 +16,7 @@ function calcDiv (a, b) {
 }
 
 function operator (op, var1, var2) {
-    if (operator === '+') {
+    if (op === '+') {
         return calcAdd(var1, var2);
     } else if (op === '-') {
         return calcSub(var1, var2);
@@ -27,15 +28,27 @@ function operator (op, var1, var2) {
 }
 
 function addToDisplay(value) {
-    displayVar = displayVar + value;
-    console.log(displayVar)
+    displayVar.innerHTML = displayVar.innerHTML + value;
 }
 
-let displayVar = '';
+function evalDisplay(toEval) {
+    evalVal = toEval.split(/[.\*+-/_]/)
+    evalOp = toEval.match(/[.\*+-/_]/g)
+
+    result = evalVal.reduce((sum, current, index) => {
+        return operator(evalOp[index-1], parseFloat(sum), parseFloat(current))
+    })
+    
+    displayVar.innerHTML = result
+}
+
+let displayVar = document.querySelector("#math-box-numbers");
 const var1 = 0;
 const var2 = 0;
 const op = '';
 
+
+/* Builds the numpad for the calculator */
 numpad = document.querySelector("#numpadNumbers");
 for (let i = 1; i < 4; i++) {
     numpadCol = document.createElement("div")
@@ -44,10 +57,21 @@ for (let i = 1; i < 4; i++) {
         numpadButton = document.createElement("button")
         numpadButton.classList.add("numpadButton")
         numpadButton.innerHTML = j
-        numpadButton.addEventListener("click", () => {
-            addToDisplay(j)
-        })
         numpadCol.appendChild(numpadButton)
     }
     numpad.appendChild(numpadCol)
+}
+
+/* Attaches the addToDisplay function to each button */
+numpadButtonsAll = document.querySelectorAll("button")
+for (const val of numpadButtonsAll) {
+    if (val.innerHTML === '=') {
+        val.addEventListener("click", () => {
+            console.log(displayVar.innerHTML)
+            evalDisplay(displayVar.innerHTML)
+        })
+    } else {
+    val.addEventListener("click", () => {
+        addToDisplay(val.innerHTML)
+    })}
 }
