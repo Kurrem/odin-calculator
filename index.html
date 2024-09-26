@@ -5,9 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
 </head>
 <body>
-    <div class="container"></div>
+    <div class="container">
+        <div id="numpad">
+            <div>
+                <div id="numpadNumbers"></div>
+                <div id="bottom-row">
+                    <button class="numpadButton">0</button>
+                    <button class="numpadButton">=</button>
+                    <button class="numpadButton">C</button>
+                </div>
+            </div>
+            <div class="numpadCol">
+                <button class="numpadButton">/</button>
+                <button class="numpadButton">*</button>
+                <button class="numpadButton">-</button>
+                <button class="numpadButton">+</button>
+            </div>
+        </div>
+        <div class="display">
+            <div id="math-box">
+                <p id="math-box-numbers">1234567890</p>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

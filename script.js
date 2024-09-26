@@ -14,18 +14,32 @@ function calcDiv (a, b) {
     return a / b;
 }
 
-function operator (operator, var1, var2) {
+function operator (op, var1, var2) {
     if (operator === '+') {
         return calcAdd(var1, var2);
-    } else if (operator === '-') {
+    } else if (op === '-') {
         return calcSub(var1, var2);
-    } else if (operator === '*') {
+    } else if (op === '*') {
         return calcMult(var1, var2);
-    } else if (operator === '/') {
+    } else if (op === '/') {
         return calcDiv(var1, var2);
     }
 }
 
 const var1 = 0;
 const var2 = 0;
-const operator = '';
+const op = '';
+
+
+numpad = document.querySelector("#numpadNumbers");
+for (let i = 1; i < 4; i++) {
+    numpadCol = document.createElement("div")
+    numpadCol.classList.add("numpadCol")
+    for (let j = i; j < 10; j+=3) {
+        numpadButton = document.createElement("button")
+        numpadButton.classList.add("numpadButton")
+        numpadButton.innerHTML = j
+        numpadCol.appendChild(numpadButton)
+    }
+    numpad.appendChild(numpadCol)
+}
