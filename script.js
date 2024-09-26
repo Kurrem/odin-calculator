@@ -26,10 +26,15 @@ function operator (op, var1, var2) {
     }
 }
 
+function addToDisplay(value) {
+    displayVar = displayVar + value;
+    console.log(displayVar)
+}
+
+let displayVar = '';
 const var1 = 0;
 const var2 = 0;
 const op = '';
-
 
 numpad = document.querySelector("#numpadNumbers");
 for (let i = 1; i < 4; i++) {
@@ -39,6 +44,9 @@ for (let i = 1; i < 4; i++) {
         numpadButton = document.createElement("button")
         numpadButton.classList.add("numpadButton")
         numpadButton.innerHTML = j
+        numpadButton.addEventListener("click", () => {
+            addToDisplay(j)
+        })
         numpadCol.appendChild(numpadButton)
     }
     numpad.appendChild(numpadCol)
